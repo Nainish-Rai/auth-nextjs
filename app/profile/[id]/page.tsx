@@ -1,12 +1,27 @@
+"use client";
+import { Button } from "@/components/ui/button";
+import axios from "axios";
 import React from "react";
+import { useRouter } from "next/navigation";
 
 type Props = {
   params: any;
 };
 
-const page = ({ params }: Props) => {
+const Page = ({ params }: Props) => {
+  const router = useRouter();
+  async function onLogout() {
+    try {
+      const response = await axios.get("/api/users/logout");
+      console.log(response);
+      router.push("/login");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
-    <div className="w-full h-screen  flex justify-center items-center selection:bg-teal-900 ">
+    <div className="w-full h-screen  flex flex-col justify-center items-center selection:bg-teal-900 ">
       <div className="flex items-end">
         <span className="scroll-m-20 text-4xl font-semibold tracking-tight">
           Welcome
@@ -15,8 +30,12 @@ const page = ({ params }: Props) => {
           {params.id}
         </span>
       </div>
+      {/* Logout button */}
+      <Button className="mt-5" onClick={() => onLogout()}>
+        Logout
+      </Button>
     </div>
   );
 };
 
-export default page;
+export default Page;

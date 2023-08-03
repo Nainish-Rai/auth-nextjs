@@ -40,7 +40,7 @@ export function SignupCard() {
       router.push("/login"); // Redirecting to login page after successful signup
     } catch (error: any) {
       console.log(error);
-      toast.error(`Something went wrong : ${error.message}`); // Displaying error message using toast notification
+      toast.error(`Error: ${error.response.data.error}`); // Displaying error message using toast notification
     } finally {
       setLoading(false);
     }
@@ -84,6 +84,7 @@ export function SignupCard() {
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
+                type="email"
                 placeholder="Enter your email"
                 value={user.email}
                 onChange={(e) => setUser({ ...user, email: e.target.value })}
@@ -93,6 +94,7 @@ export function SignupCard() {
               <Label htmlFor="password">Password</Label>
               <Input
                 id="password"
+                type="password"
                 placeholder="Enter your password"
                 value={user.password}
                 onChange={(e) => setUser({ ...user, password: e.target.value })}

@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
   try {
     // Parse the JSON body of the request
     const reqBody = await request.json();
-    console.log(reqBody);
+
     const { email, password } = reqBody;
 
     // Check if a user with the same email already exists in the database

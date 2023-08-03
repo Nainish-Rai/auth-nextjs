@@ -49,7 +49,7 @@ export function LoginCard() {
       console.log(error);
 
       // Displaying error message using toast notification
-      toast.error(`Something went wrong: ${error.message}`);
+      toast.error(`Error: ${error.response.data.error}`);
     } finally {
       setLoading(false);
     }
@@ -86,6 +86,7 @@ export function LoginCard() {
               {/* Email input */}
               <Input
                 id="email"
+                type="email"
                 placeholder="Enter your email"
                 value={user.email}
                 onChange={(e) => setUser({ ...user, email: e.target.value })}
@@ -98,6 +99,7 @@ export function LoginCard() {
               {/* Password input */}
               <Input
                 id="password"
+                type="password"
                 placeholder="Enter your password"
                 value={user.password}
                 onChange={(e) => setUser({ ...user, password: e.target.value })}
@@ -124,7 +126,7 @@ export function LoginCard() {
             </>
           ) : (
             // Default state
-            "SignIn"
+            "Login"
           )}
         </Button>
       </CardFooter>
